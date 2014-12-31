@@ -5,10 +5,11 @@
 	<body>
 		<h2>Formatter!</h2>
 		<pre>{"obj": {"sex":"male"},"arr":[1,2,3,4,5,6, {"name":"hello", "age": 23}], "num": 3}</pre>
+		<pre>[{"obj": {"sex":"male", "good": "yes"},"arr":[1,2,3,"wel",5,6, {"name":"hello", "age": 23}], "num": 3, "h": 123456}, {"this": true}]</pre>
 	</body>
 	<script src="formatter.js"></script>
 	<script>
-		var a = [{"obj": {"sex":"male", "good": "yes"},"arr":[1,2,3,4,5,6, {"name":"hello", "age": 23}], "num": 3, "h": 123456}, {"this": true}];
+		var a = [{"obj": {"sex":"male", "good": "yes"},"arr":[1,2,3,"wel",5,6, {"name":"hello", "age": 23}], "num": 3, "h": 123456}, {"this": true}];
 		var f = new Formatter();
 		f.format(a);
 		//var a = {"obj": 1};

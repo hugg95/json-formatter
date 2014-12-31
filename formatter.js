@@ -7,6 +7,7 @@
 var Formatter;
 
 (function(window, undefined) {
+    'use strict';
 
     // Formatter class defination
     Formatter = function(options) {
@@ -16,12 +17,13 @@ var Formatter;
     };
 
     // _options is the local default config
-    // config is for global
-    var config = _options = {
+    var _options = {
         white: 2, // indent 2 white space
         tab: false, // does not use tab for indent
         space: true // uses Space for indent
-    };
+    },
+    // config is for global
+    config;
 
     /**
      * json string validator
@@ -62,6 +64,7 @@ var Formatter;
      * @param level a level number
      */
     var _analyse = function(todo, done, level) {
+
         if (!todo || !todo.length) {
             return done;
         }
@@ -71,7 +74,7 @@ var Formatter;
         for (; i < len; i++) {
             var currItem = todo[i], currType = _getType(currItem);
             if (currType === 'array') {
-                var i = 0; arrayLen = currItem.length;
+                var i = 0, arrayLen = currItem.length;
                 for (; i < arrayLen; i++) {
                     var _key = {}, currObj = currItem[i], type = _getType(currObj);
                     if (type !== 'array' && type !== 'object') {
