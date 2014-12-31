@@ -1,0 +1,66 @@
+<!DOCTYPE>
+<html>
+	<head>
+	</head>
+	<body>
+		<h2>Formatter!</h2>
+		<pre>{"obj": {"sex":"male"},"arr":[1,2,3,4,5,6, {"name":"hello", "age": 23}], "num": 3}</pre>
+	</body>
+	<script src="formatter.js"></script>
+	<script>
+		var a = [{"obj": {"sex":"male", "good": "yes"},"arr":[1,2,3,4,5,6, {"name":"hello", "age": 23}], "num": 3, "h": 123456}, {"this": true}];
+		var f = new Formatter();
+		f.format(a);
+		//var a = {"obj": 1};
+		/*var f = [];
+		var r = [];
+		r.push(a);
+		function format(json) {
+			if (!json.length) {return}
+	        for (var i = 0; i < json.length; i++) {
+				var arr = [];
+				for (var k in json[i]) {
+					var t = {};
+					var curr = json[i][k];
+					if (!curr) {
+						t.key = k;
+						t.value = curr;
+						t.type = null;
+						f.push(t);
+					} else if (curr.constructor.name === 'Object') {
+						//t.value = curr;
+						//t.type = curr.constructor.name;
+						//t.parent = k;
+						arr.push(curr);
+					} else if (curr.constructor.name === 'Array') {
+						for (var j = 0; j < curr.length; j++) {
+							if (!j) {
+								t.value = j;
+								t.parent = k;
+								f.push(t);
+							} else if (j.constructor.name === 'Object') {
+								t.value = j;
+								t.parent = k;
+								f.push(t);
+							} else {
+								t.value = j;
+								t.parent = k;
+								f.push(t);
+							}
+						}
+						curr.parent = k;
+						arr.push(curr);
+					} else {
+						
+					}
+				}
+				r = arr;
+				console.log(r);
+				format(r);
+			}
+		}
+		format(r);
+		console.log('---------');
+		console.log(f);*/
+	</script>
+</html>
