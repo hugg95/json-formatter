@@ -69,7 +69,11 @@ var Formatter;
             return done;
         }
 
-        var i = 0, len = todo.length, _todo = [], levelArray = [], parentKey = '__PARENT__';
+        var i = 0,
+            len = todo.length,
+            newTodo = [],
+            levelArray = [],
+            parentKey = '__PARENT__';
 
         for (; i < len; i++) {
             var currItem = todo[i], currType = _getType(currItem);
@@ -85,7 +89,7 @@ var Formatter;
                         }
                     } else {
                         currObj[parentKey] = key;
-                        _todo.push(currObj);
+                        newTodo.push(currObj);
                     }
 
                     levelArray.push(_key);
@@ -98,7 +102,9 @@ var Formatter;
                         continue;
                     }
 
-                    var _key = {}, currObj = currItem[key], type = _getType(currObj);
+                    var _key = {},
+                        currObj = currItem[key],
+                        type = _getType(currObj);
                     _key.name = key;
                     _key.type = type;
 
@@ -109,7 +115,7 @@ var Formatter;
                         _key.value = currObj;
                     } else {
                         currObj[parentKey] = key;
-                        _todo.push(currObj);
+                        newTodo.push(currObj);
                     }
 
                     levelArray.push(_key);
@@ -119,7 +125,7 @@ var Formatter;
 
         done[level] = levelArray;
 
-        todo = _todo;
+        todo = newTodo;
         _analyse(todo, done, ++level);
     };
 
