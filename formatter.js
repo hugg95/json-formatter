@@ -59,8 +59,8 @@ var Formatter;
 
     /**
      * analyse the json string
-     * @param todo the json array that contains json string that waited to be analysed
-     * @param done
+     * @param todo put the 
+     * @param done all of the 
      * @param level a level number
      */
     var _analyse = function(todo, done, level) {
