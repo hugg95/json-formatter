@@ -1,147 +1,62 @@
-/*********************************************************
- * JSON FORMATTER                                        *
- * @VERSION: 1.0.0                                       *
- * @AUTHOR Victor Li lncwwn@gmail.com                    *
- * @LICENSE: MIT                                         *
- * *******************************************************/
-var Formatter;
+/**
+ * json formatter
+ * @author victor li nianchaoli@msn.cn
+ * @date 2015-02-01
+ * @version 1.0.0
+ * released under terms of MIT lincense
+ */
 
-(function(window, undefined) {
-    'use strict';
+'use strict';
+var Formatter = (function(g, undefined) {
 
-    // Formatter class defination
-    Formatter = function(options) {
-        if (options) {
-            // TODO
+    /*
+     * convert json string to json object
+     * @param string  valid json string
+     */
+    function _convert(string) {
+        return eval(string);
+    };
+
+    function _format(json) {
+        var type = _typeof(json);
+        var object = ['Array', 'Object'],
+            simple = ['String', 'Number', 'Date', 'undefined', 'null', 'Boolean', 'NaN'];
+        if ('Array' === _type) {
+            //
+        } else if ('') {
         }
     };
 
-    // _options is the local default config
-    var _options = {
-        white: 2, // indent 2 white space
-        tab: false, // does not use tab for indent
-        space: true // uses Space for indent
-    },
-    // config is for global
-    config;
+    /**
+     * is the specified element in array
+     * @param array
+     */
+    function _in(array) {
+        var index = array.indexOf(this);
+        return index === -1 ? false : true;
+    }
 
     /**
-     * json string validator
+     * get object's real type
      */
-    Formatter.prototype.validate = function(json_string) {
-        // TODO
-    };
-
-
-    /**
-     * json string formatter
-     */
-    Formatter.prototype.format = function(json_string) {
-
-        //var _white = config.white,
-        //    _tab = config.tab,
-        //    _space = config.space;
-
-        //if (_tab) {
-        //    return JSON.stringify(json_string, null, '\t');
-        //}
-
-        //return JSON.stringify(json_string, null, _white);
-        var todo = [], done = {}, START_LEVEL = 0;
-
-        todo.push(json_string);
-
-        _analyse(todo, done, START_LEVEL);
-        //console.log(todo);
-        console.log(done);
-
-    };
-
-    /**
-     * analyse the json string
-     * @param todo put the 
-     * @param done all of the 
-     * @param level a level number
-     */
-    var _analyse = function(todo, done, level) {
-
-        if (!todo || !todo.length) {
-            return done;
+    function _typeof(obj) {
+        if (typeof obj === 'undefined') {
+            return 'undefined';
         }
-
-        var i = 0,
-            len = todo.length,
-            newTodo = [],
-            levelArray = [],
-            parentKey = '__PARENT__';
-
-        for (; i < len; i++) {
-            var currItem = todo[i], currType = _getType(currItem);
-            if (currType === 'array') {
-                var i = 0, arrayLen = currItem.length;
-                for (; i < arrayLen; i++) {
-                    var _key = {}, currObj = currItem[i], type = _getType(currObj);
-                    if (type !== 'array' && type !== 'object') {
-                        _key.value = currObj;
-                        _key.type = type;
-                        if (currItem[parentKey]) {
-                            _key[parentKey] = currItem[parentKey];
-                        }
-                    } else {
-                        currObj[parentKey] = key;
-                        newTodo.push(currObj);
-                    }
-
-                    levelArray.push(_key);
-                }
-
-            } else if (currType === 'object') {
-
-                for (var key in currItem) {
-                    if (parentKey === key) {
-                        continue;
-                    }
-
-                    var _key = {},
-                        currObj = currItem[key],
-                        type = _getType(currObj);
-                    _key.name = key;
-                    _key.type = type;
-
-                    if (currItem[parentKey]) {
-                        _key[parentKey] = currItem[parentKey];
-                    }
-                    if (type !== 'object' && type !== 'array') {
-                        _key.value = currObj;
-                    } else {
-                        currObj[parentKey] = key;
-                        newTodo.push(currObj);
-                    }
-
-                    levelArray.push(_key);
-                }
+        if (obj === null) {
+            return 'null';
+        }
+        var _obj = obj,
+            type = _obj.constructor.name;
+        if (type === 'Number') {
+            if (isNaN(_obj)) {
+                return 'NaN';
             }
         }
+        return type;
+    }
 
-        done[level] = levelArray;
-
-        todo = newTodo;
-        _analyse(todo, done, ++level);
+    return {
+        format: _format
     };
-
-    /**
-     * analyse the json string
-     */
-    var _format = function() {
-        //var array = [{key: }];
-        //var arr = {0: {}, 1: {}, 2: {}};
-    };
-
-    var _getType = function(obj) {
-        if (null === obj || undefined  === obj) {
-            return;
-        }
-        return obj.constructor.name.toLowerCase();
-    };
-
 })(window);
